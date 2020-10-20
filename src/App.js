@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import UserProfile from './componentsV2/containers/userProfile';
+import Navbar from './componentsV2/containers/Navbar';
+
+// sections - paths
+import AllPublications from './sections/AllPublications';
+import HelpersContainer from './componentsV2/containers/HelpersContainer';
+import RegistrationV2 from './sections/Registration';
+import LogInV2 from './sections/LogIn';
+import MyPublications from './sections/MyPublications';
+
+import './App.scss';
+
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <Navbar />
+        <div id="app">
+          <Switch>
+            <Route path="/user-profile">
+              <UserProfile />
+            </Route>
+            <Route path="/registration">
+              <RegistrationV2 />
+            </Route>
+            <Route path="/login">
+              <LogInV2 />
+            </Route>
+            <Route path="/MyPublications">
+              <MyPublications />
+            </Route>
+            <Route path="/">
+              <AllPublications />
+            </Route>
+          </Switch>
+
+          <HelpersContainer />
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;
